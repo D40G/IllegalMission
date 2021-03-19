@@ -13,10 +13,10 @@ spawnCar = function(car)
     end
 
     local vehicle = CreateVehicle(car,  762.51458740234,-1866.2678222656,28.667362213135, 263.71, true, false)
-    SetEntityAsNoLongerNeeded(vehicle)
+    	SetEntityAsNoLongerNeeded(vehicle)
 	SetModelAsNoLongerNeeded(vehicle)	
 	TaskWarpPedIntoVehicle(plyPed, vehicle, -1)
-    SetVehicleNumberPlateText(vehicle, "GO FAST")
+    	SetVehicleNumberPlateText(vehicle, "GO FAST")
 	vehicle = vehicle
 end
 
