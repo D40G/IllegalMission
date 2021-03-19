@@ -13,9 +13,11 @@ spawnCar = function(car)
     end
 
     local vehicle = CreateVehicle(car,  762.51458740234,-1866.2678222656,28.667362213135, 263.71, true, false)
-	SetEntityAsMissionEntity(vehicle, true, true)
+    SetEntityAsNoLongerNeeded(vehicle)
+	SetModelAsNoLongerNeeded(vehicle)	
 	TaskWarpPedIntoVehicle(plyPed, vehicle, -1)
     SetVehicleNumberPlateText(vehicle, "GO FAST")
+	vehicle = vehicle
 end
 
 ---- PED
@@ -27,7 +29,7 @@ Citizen.CreateThread(function()
     end
 
 
-    local npc2 = CreatePed("PED_TYPE_CIVMALE", "s_m_m_bouncer_01", 755.02111816406, -1865.4534912109,  28.293727874756, 100.40, false, true)
+    local npc2 = CreatePed("PED_TYPE_CIVMALE", "s_m_m_bouncer_01", 755.02111816406, -1865.4534912109,  28.293727874756, 99.40, false, true)
 
     FreezeEntityPosition(npc2, true)
     SetEntityHeading(npc2, 263.71)
@@ -77,6 +79,7 @@ trajet = {
 					for k in pairs(gofast1) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
 						local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, gofast1[k].x, gofast1[k].y, gofast1[k].z)
+						local plate = GetVehicleNumberPlateText(GetVehiclePedIsIn(plyPed, false))
 						if dist <= 15.0 then
 							DrawMarker(Config.MarkerType, gofast1[k].x, gofast1[k].y, gofast1[k].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.MarkerSize.x, Config.MarkerSize.y, Config.MarkerSize.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, false, false, false)
 							
@@ -84,7 +87,7 @@ trajet = {
 						if dist <= 1.5 then
 							ESX.ShowHelpNotification("Appuyez sur ~INPUT_TALK~ pour livrer votre ~b~butin")
 							if IsControlJustPressed(1,51) then
-								if IsPedSittingInAnyVehicle(plyPed) then
+								if plate == "GO FAST " then
 									SetVehicleDoorOpen(GetVehiclePedIsIn(plyPed, false), 5, false)
 									Wait(2000)
 									LivraisonStart = false
@@ -139,6 +142,7 @@ trajet = {
 					for k in pairs(gofast2) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
 						local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, gofast2[k].x, gofast2[k].y, gofast2[k].z)
+						local plate = GetVehicleNumberPlateText(GetVehiclePedIsIn(plyPed, false))
 						if dist <= 15.0 then
 							DrawMarker(Config.MarkerType, gofast2[k].x, gofast2[k].y, gofast2[k].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.MarkerSize.x, Config.MarkerSize.y, Config.MarkerSize.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, false, false, false)
 							
@@ -146,7 +150,7 @@ trajet = {
 						if dist <= 1.5 then
 							ESX.ShowHelpNotification("Appuyez sur ~INPUT_TALK~ pour livrer votre ~b~butin")
 							if IsControlJustPressed(1,51) then
-								if IsPedSittingInAnyVehicle(plyPed)  then
+								if plate == "GO FAST " then
 									SetVehicleDoorOpen(GetVehiclePedIsIn(plyPed, false), 5, false)
 									Wait(2000)
 									LivraisonStart = false
@@ -199,6 +203,7 @@ trajet = {
 					for k in pairs(gofast3) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
 						local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, gofast3[k].x, gofast3[k].y, gofast3[k].z)
+						local plate = GetVehicleNumberPlateText(GetVehiclePedIsIn(plyPed, false))
 						if dist <= 15.0 then
 							DrawMarker(Config.MarkerType, gofast3[k].x, gofast3[k].y, gofast3[k].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.MarkerSize.x, Config.MarkerSize.y, Config.MarkerSize.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, false, false, false)
 							
@@ -206,7 +211,7 @@ trajet = {
 						if dist <= 1.5 then
 							ESX.ShowHelpNotification("Appuyez sur ~INPUT_TALK~ pour livrer votre ~b~butin")
 							if IsControlJustPressed(1,51) then
-								if IsPedSittingInAnyVehicle(plyPed)  then
+								if plate == "GO FAST " then
 									SetVehicleDoorOpen(GetVehiclePedIsIn(plyPed, false), 5, false)
 									Wait(2000)
 									LivraisonStart = false
