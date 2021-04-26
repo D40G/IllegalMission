@@ -75,6 +75,7 @@ trajet = {
 
 			while true do
 				Citizen.Wait(5)
+				local plyPed = PlayerPedId()
 				if LivraisonStart == true then
 					for k in pairs(gofast1) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
@@ -138,6 +139,7 @@ trajet = {
 
 			while true do
 				Citizen.Wait(5)
+				local plyPed = PlayerPedId()
 				if LivraisonStart == true then
 					for k in pairs(gofast2) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
@@ -162,9 +164,6 @@ trajet = {
 								else
 									ESX.ShowNotification('Il est où le véhicule que je t\'ai donné ? Dégage man !')
 								end
-
-
-
 
 							end
 						end
@@ -199,6 +198,8 @@ trajet = {
 
 			while true do
 				Citizen.Wait(5)
+				local plyPed = PlayerPedId()
+
 				if LivraisonStart == true then
 					for k in pairs(gofast3) do
 						local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
